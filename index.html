@@ -1,77 +1,520 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PR Cricket Prediction</title>
+<meta name="theme-color" content="#05070b">
+<meta name="description" content="Join PR Gaming Zone for gaming updates, esports news, game highlights and community updates.">
+<title>PR Gaming Zone | Join Our Gaming Community</title>
+
 <style>
-:root{--gold:#ffd76a;--blue:#171cff;--green:#28d17c}
-*{box-sizing:border-box}
-body{margin:0;background:#030507;color:#fff;font-family:Arial,Helvetica,sans-serif;text-align:center;overflow-x:hidden}
-.page{position:relative;min-height:100vh;padding:38px 16px 34px;max-width:520px;margin:0 auto;isolation:isolate;display:flex;flex-direction:column;align-items:center;text-align:center}
-.pitch{position:fixed;inset:0;z-index:-2;opacity:.16;background:radial-gradient(ellipse at 50% 24%,#164e36 0,transparent 42%),linear-gradient(135deg,transparent 46%,#0d2c20 47%,transparent 49%);pointer-events:none}
-.stars{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(#fff9 1px,transparent 1.5px),radial-gradient(#ffd76a88 1px,transparent 1.5px);background-size:53px 61px,79px 87px;background-position:0 0,25px 33px;animation:twinkle 3s ease-in-out infinite alternate}
-h1{font-size:clamp(23px,6vw,30px);margin:18px 0 12px;font-weight:900;color:var(--gold);text-shadow:0 0 15px #ffc74466}
-\n\n
+:root {
+  --bg: #05070b;
+  --panel: #0d121c;
+  --green: #35ff91;
+  --blue: #397bff;
+  --white: #f6f8ff;
+  --muted: #a4aec1;
+}
 
+* {
+  box-sizing: border-box;
+}
 
-.ball:after{transform:rotate(-48deg)}
+html {
+  scroll-behavior: smooth;
+}
 
-.tagline{font-size:16px;line-height:1.5;margin:14px auto 22px;font-weight:700;text-align:center;width:100%}
-.sub{font-size:14px;color:#eee;margin:0 auto 20px;text-align:center;width:100%}
-.passes{list-style:none;padding:0;margin:0 auto 28px;display:grid;gap:12px;font-size:15px;font-weight:700;width:100%;justify-items:center;text-align:center}
-.passes li{animation:fadeUp .7s both}
-.passes li:nth-child(2){animation-delay:.12s}.passes li:nth-child(3){animation-delay:.24s}.passes li:nth-child(4){animation-delay:.36s}
-.passes span{color:var(--gold);text-shadow:0 0 10px #ffd76a66}
-.join{display:block;position:relative;overflow:hidden;width:100%;max-width:340px;margin:26px auto 18px;padding:18px 12px;border-radius:13px;text-decoration:none;color:#fff;font-weight:900;font-size:20px;letter-spacing:.2px;background:linear-gradient(110deg,#1515ff,#3730ff,#1010d9);box-shadow:0 0 0 1px #7b7bff88,0 8px 24px #1515ff55;animation:tap 1.15s ease-in-out infinite;align-self:center}
-.join:before{content:"";position:absolute;top:-60%;left:-60%;width:38%;height:220%;background:linear-gradient(90deg,transparent,#ffffff85,transparent);transform:rotate(24deg);animation:shine 2.7s linear infinite}
-.join:active{transform:scale(.97)}
-.join span{position:relative;z-index:1}
-.footer{font-size:13px;color:#ddd;margin:18px auto 0;text-align:center;width:100%}.footer b{color:var(--gold)}
-.badge{display:inline-block;border:1px solid #ffd76a66;background:#ffd76a12;color:var(--gold);border-radius:99px;padding:7px 12px;font-size:11px;letter-spacing:1.2px;font-weight:800}
-@keyframes tap{0%,100%{transform:scale(1);box-shadow:0 0 0 1px #7777ff,0 8px 24px #1515ff55}50%{transform:scale(1.035);box-shadow:0 0 0 4px #3535ff33,0 10px 30px #2929ff99}}
-@keyframes shine{0%{left:-70%}55%,100%{left:140%}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}\n@keyframes logoGlow{from{filter:drop-shadow(0 0 2px #ffd76a);transform:scale(1)}to{filter:drop-shadow(0 0 12px #ffd76a);transform:scale(1.035)}}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes twinkle{from{opacity:.09}to{opacity:.24}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@media(min-width:480px){.page{position:relative;min-height:100vh;padding:38px 16px 34px;max-width:520px;margin:0 auto;isolation:isolate;display:flex;flex-direction:column;align-items:center;text-align:center}.passes{list-style:none;padding:0;margin:0 auto 28px;display:grid;gap:12px;font-size:15px;font-weight:700;width:100%;justify-items:center;text-align:center}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-.profile-wrap{width:140px;height:140px;margin:8px auto 16px;border:3px solid #ffd76a;border-radius:50%;padding:3px;background:#050505;box-shadow:0 0 9px #ffd76a,0 0 22px #ffb00077;overflow:hidden;animation:float 2.4s ease-in-out infinite}
-.profile-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:center 38%;border-radius:50%;animation:logoGlow 2.2s ease-in-out infinite alternate}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse at 15% 15%, #123b2b 0, transparent 40%),
+    radial-gradient(ellipse at 90% 45%, #111d49 0, transparent 38%),
+    linear-gradient(145deg, #05070b, #080d16 55%, #030507);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .16;
+  background-image:
+    radial-gradient(#ffffff 1px, transparent 1px),
+    radial-gradient(#35ff91 1px, transparent 1px);
+  background-size: 57px 57px, 89px 89px;
+  background-position: 0 0, 28px 40px;
+  animation: stars 4s ease-in-out infinite alternate;
+}
+
+.page {
+  width: 100%;
+  max-width: 520px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 28px 20px 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.topbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.live-badge {
+  padding: 8px 14px;
+  border: 1px solid #35ff9155;
+  border-radius: 30px;
+  background: #35ff9110;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  box-shadow: 0 0 18px #35ff9110;
+}
+
+.live-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+  animation: blink 1.2s infinite;
+}
+
+.profile-wrap {
+  position: relative;
+  width: 146px;
+  height: 146px;
+  padding: 4px;
+  margin: 3px auto 22px;
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  background: #07120d;
+  box-shadow:
+    0 0 12px #35ff9166,
+    0 0 36px #35ff9125,
+    0 0 65px #397bff20;
+  animation: float 3s ease-in-out infinite;
+}
+
+.profile-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -9px;
+  border: 1px dashed #35ff9166;
+  border-radius: 50%;
+  animation: spin 14s linear infinite;
+}
+
+.profile-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+h1 {
+  margin: 4px 0 12px;
+  font-size: clamp(28px, 7vw, 37px);
+  line-height: 1.15;
+  font-weight: 1000;
+  letter-spacing: -.8px;
+  color: var(--white);
+  text-shadow: 0 0 24px #35ff9125;
+}
+
+h1 span {
+  display: block;
+  margin-top: 5px;
+  color: var(--green);
+  text-shadow: 0 0 22px #35ff9144;
+}
+
+.tagline {
+  max-width: 390px;
+  margin: 8px auto 18px;
+  color: #d5dbea;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.highlight {
+  color: var(--green);
+  font-weight: 800;
+}
+
+.section-label {
+  width: 100%;
+  margin: 8px 0 12px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.games {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 20px;
+}
+
+.game-card {
+  min-height: 94px;
+  padding: 16px 8px;
+  border: 1px solid #ffffff12;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #111a28, #0a0f18);
+  box-shadow: inset 0 1px #ffffff08;
+  animation: fadeUp .65s both;
+  transition: transform .25s, border-color .25s;
+}
+
+.game-card:nth-child(2) { animation-delay: .1s; }
+.game-card:nth-child(3) { animation-delay: .2s; }
+.game-card:nth-child(4) { animation-delay: .3s; }
+
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: #35ff9166;
+}
+
+.game-icon {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 27px;
+}
+
+.game-name {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.game-desc {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.features {
+  width: 100%;
+  margin: 3px 0 16px;
+  padding: 16px;
+  border: 1px solid #397bff30;
+  border-radius: 15px;
+  background: linear-gradient(120deg, #101a28bb, #0a111bbd);
+  text-align: left;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 0;
+  color: #e5eaf5;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.feature + .feature {
+  border-top: 1px solid #ffffff0b;
+}
+
+.check {
+  color: var(--green);
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.join {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 62px;
+  max-width: 370px;
+  margin: 15px auto 13px;
+  padding: 17px 12px;
+  overflow: hidden;
+  border: 1px solid #80ffb5;
+  border-radius: 13px;
+  background: linear-gradient(110deg, #13b965, #35ff91, #18c978);
+  color: #03150b;
+  font-size: 16px;
+  font-weight: 1000;
+  letter-spacing: .5px;
+  text-decoration: none;
+  box-shadow: 0 0 24px #35ff9130, 0 7px 25px #0008;
+  animation: pulse 1.7s ease-in-out infinite;
+  transition: transform .2s;
+}
+
+.join::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -75%;
+  width: 35%;
+  height: 220%;
+  background: linear-gradient(90deg, transparent, #ffffffaa, transparent);
+  transform: rotate(24deg);
+  animation: shine 3s linear infinite;
+}
+
+.join:active {
+  transform: scale(.97);
+}
+
+.join span {
+  position: relative;
+  z-index: 1;
+}
+
+.join-icon {
+  font-size: 22px;
+}
+
+.note {
+  margin: 0;
+  color: #8994a8;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 28px;
+  color: #8490a4;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.footer b {
+  color: var(--green);
+}
+
+@keyframes blink {
+  50% { opacity: .35; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes stars {
+  from { opacity: .10; }
+  to { opacity: .30; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 20px #35ff9125; }
+  50% { box-shadow: 0 0 30px #35ff9160; }
+}
+
+@keyframes shine {
+  0% { left: -75%; }
+  60%, 100% { left: 145%; }
+}
+
+@media (max-width: 360px) {
+  .page { padding: 24px 14px 30px; }
+  .game-card { padding: 13px 5px; }
+  .game-name { font-size: 12px; }
+  .join { font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
-<!-- Replace YOUR_PIXEL_ID with your Meta Pixel ID before publishing -->
+
+<!-- META PIXEL: Replace YOUR_PIXEL_ID with your real Pixel ID -->
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','YOUR_PIXEL_ID');fbq('track','PageView');
+!function(f,b,e,v,n,t,s) {
+  if(f.fbq)return;
+  n=f.fbq=function() {
+    n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+  };
+  if(!f._fbq)f._fbq=n;
+  n.push=n;
+  n.loaded=!0;
+  n.version='2.0';
+  n.queue=[];
+  t=b.createElement(e);
+  t.async=!0;
+  t.src=v;
+  s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s);
+}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', 'YOUR_PIXEL_ID');
+fbq('track', 'PageView');
 </script>
+<!-- END META PIXEL -->
+
 </head>
+
 <body>
-<div class="pitch"></div><div class="stars"></div>
 <main class="page">
 
-  <div class="profile-wrap" aria-label="Profile photo"><img class="profile-photo" src="assets/profile-photo.jpg" alt="Profile photo"></div>
-  <h1>👑 PR Cricket Prediction 👑</h1>
-  <p class="tagline">🏏 India’s Cricket Updates & Match Insights 🏏</p>
-  <p class="sub">Join our Telegram channel for updates</p>
-  <ul class="passes">
-    <li><span>⚡</span> IPL Match Updates <span>⚡</span></li>
-    <li><span>⚡</span> CPL Match Updates <span>⚡</span></li>
-    <li><span>⚡</span> World Cup Updates <span>⚡</span></li>
-    <li><span>⚡</span> Big Bash League Updates <span>⚡</span></li>
-  </ul>
-  <a class="join" id="joinBtn" href="https://t.me/" target="_blank" rel="noopener"><span>JOIN OUR TELEGRAM ➜</span></a>
-  <div class="footer">Channel updates by <b>APEagency</b></div>
+  <div class="topbar">
+    <div class="live-badge">
+      <span class="live-dot"></span> GAMING COMMUNITY
+    </div>
+  </div>
+
+  <div class="profile-wrap">
+    <img
+      class="profile-photo"
+      src="assets/profile-photo.jpg"
+      alt="PR Gaming Zone logo"
+      width="138"
+      height="138"
+    >
+  </div>
+
+  <h1>
+    PR GAMING
+    <span>ZONE</span>
+  </h1>
+
+  <p class="tagline">
+    Level up your gaming experience! 🎮
+    Join our community for
+    <span class="highlight">gaming updates, esports news</span>
+    and exciting highlights.
+  </p>
+
+  <p class="section-label">EXPLORE YOUR GAMING WORLD</p>
+
+  <section class="games" aria-label="Gaming categories">
+
+    <div class="game-card">
+      <span class="game-icon">🎯</span>
+      <div class="game-name">BGMI</div>
+      <div class="game-desc">Game updates & highlights</div>
+    </div>
+
+    <div class="game-card">
+      <span class="game-icon">🔥</span>
+      <div class="game-name">FREE FIRE</div>
+      <div class="game-desc">Gaming news & tips</div>
+    </div>
+
+    <div class="game-card">
+      <span class="game-icon">🏎️</span>
+      <div class="game-name">GTA & RACING</div>
+      <div class="game-desc">Gameplay & discoveries</div>
+    </div>
+
+    <div class="game-card">
+      <span class="game-icon">🏆</span>
+      <div class="game-name">ESPORTS</div>
+      <div class="game-desc">Tournaments & news</div>
+    </div>
+
+  </section>
+
+  <section class="features" aria-label="Community benefits">
+    <div class="feature">
+      <span class="check">✓</span>
+      <span>Latest gaming updates and announcements</span>
+    </div>
+    <div class="feature">
+      <span class="check">✓</span>
+      <span>Gameplay highlights, tips and tricks</span>
+    </div>
+    <div class="feature">
+      <span class="check">✓</span>
+      <span>Esports news and community discussions</span>
+    </div>
+  </section>
+
+  <!-- Replace with your real Telegram channel/group link -->
+  <a
+    class="join"
+    id="joinBtn"
+    href="https://t.me/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <span class="join-icon">✈</span>
+    <span>JOIN OUR TELEGRAM</span>
+    <span>➜</span>
+  </a>
+
+  <p class="note">
+    Join the community and stay updated.<br>
+    Gaming content and updates only.
+  </p>
+
+  <footer class="footer">
+    Gaming updates by <b>APEagency</b><br>
+    Play smart. Game on. 🎮
+  </footer>
+
 </main>
+
 <script>
-document.getElementById('joinBtn').addEventListener('click',function(){
-  if(typeof fbq==='function'){fbq('track','Lead',{content_name:'Telegram Join Button'});}
-});
+(function () {
+  const joinButton = document.getElementById('joinBtn');
+
+  joinButton.addEventListener('click', function () {
+    if (typeof window.fbq === 'function') {
+      // Standard Meta event for a prospective community join.
+      window.fbq('track', 'Lead', {
+        content_name: 'PR Gaming Zone Telegram Join',
+        content_category: 'Gaming Community'
+      });
+
+      // Custom event for analysing Telegram button clicks separately.
+      window.fbq('trackCustom', 'TelegramJoinClick', {
+        content_name: 'PR Gaming Zone'
+      });
+    }
+  });
+})();
 </script>
+
 </body>
 </html>
