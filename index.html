@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05080d">
 <title>DUIWIN GAME</title>
 
 <style>
@@ -26,63 +27,139 @@ body{
 h1{font-size:27px;margin:18px 0 8px;font-weight:900}
 h1 span{color:#35ff91}
 p{font-size:14px;line-height:1.6;color:#b8c4d4;margin:10px 0 20px}
-.tags{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:18px 0 24px}
+.tags{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:8px;margin:18px 0 24px
+}
 .tags span{
   padding:9px 12px;border-radius:9px;background:#131f29;
-  border:1px solid #ffffff14;font-size:12px;color:#35ff91;font-weight:bold;
+  border:1px solid #ffffff14;font-size:12px;
+  color:#35ff91;font-weight:bold;
 }
 .join{
-  display:block;padding:16px 10px;border-radius:11px;
-  background:linear-gradient(100deg,#16bf69,#35ff91);
-  color:#03150b;text-decoration:none;font-weight:900;font-size:16px;
-  box-shadow:0 0 22px #35ff9130;animation:pulse 1.7s infinite;
+  display:block;padding:15px 10px;border-radius:11px;
+  color:#03150b;text-decoration:none;font-weight:900;
+  font-size:15px;margin-top:12px;
+  box-shadow:0 0 22px #35ff9130;
+  transition:transform .2s;
 }
-small{display:block;color:#8493a7;margin-top:17px;font-size:11px}
-@keyframes pulse{50%{box-shadow:0 0 28px #35ff9170}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+.join:hover{transform:translateY(-2px)}
+.telegram{
+  background:linear-gradient(100deg,#16bf69,#35ff91);
+  animation:pulse 1.7s infinite;
+}
+.whatsapp{
+  background:linear-gradient(100deg,#128c50,#25d366);
+  color:#fff;
+  box-shadow:0 0 22px #25d36630;
+}
+small{
+  display:block;color:#8493a7;
+  margin-top:17px;font-size:11px
+}
+@keyframes pulse{
+  50%{box-shadow:0 0 28px #35ff9170}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+}
 </style>
 
 <!-- META PIXEL -->
 <script>
 !function(f,b,e,v,n,t,s){
-if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
-s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)
-}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+if(f.fbq)return;
+n=f.fbq=function(){
+n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)
+};
+if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];
+t=b.createElement(e);t.async=!0;t.src=v;
+s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)
+}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
 
 fbq('init','YOUR_PIXEL_ID');
 fbq('track','PageView');
 </script>
+<!-- END META PIXEL -->
+
 </head>
-
 <body>
-<div class="card">
-  <img class="logo" src="assets/profile-photo.jpg" alt="Gaming Logo">
 
-  <h1>PR <span>GAMING</span></h1>
-  <p>🎮 Gaming Updates • Color Trading • Tips & Tricks</p>
+<div class="card">
+
+  <img class="logo"
+       src="assets/profile-photo.jpg"
+       alt="DUIWIN GAME Logo">
+
+  <h1>DUIWIN <span>GAME</span></h1>
+
+  <p>🎮 Color Trading • Gaming Updates • Community</p>
 
   <div class="tags">
-    <span>🔥 Color Trading</span>
-    <span>🎯 Casino</span>
-    <span>🏆 Betting</span>
+    <span>🎮 Color Trading</span>
+    <span>🎯 Gaming</span>
+    <span>🏆 Updates</span>
   </div>
 
-  <a class="join" id="joinBtn"
-     href="https://t.me/" target="_blank"
-     rel="noopener noreferrer">✈ JOIN TELEGRAM ➜</a>
+  <!-- TELEGRAM BUTTON: Replace with your channel link -->
+  <a class="join telegram"
+     id="telegramBtn"
+     href="https://t.me/"
+     target="_blank"
+     rel="noopener noreferrer">
+     ✈ JOIN TELEGRAM ➜
+  </a>
 
-  <small>Gaming Community • APEagency</small>
+  <!-- WHATSAPP BUTTON: Replace with your number -->
+  <a class="join whatsapp"
+     id="whatsappBtn"
+     href="https://wa.me/919876543210"
+     target="_blank"
+     rel="noopener noreferrer">
+     💬 JOIN ON WHATSAPP ➜
+  </a>
+
+  <small>Community Updates • APEagency</small>
+
 </div>
 
 <script>
-document.getElementById('joinBtn').addEventListener('click',function(){
-  if(typeof fbq==='function'){
-    fbq('track','Lead',{content_name:'Gaming Telegram Join'});
+(function(){
+
+  function trackClick(buttonId, eventName, label){
+    var button = document.getElementById(buttonId);
+
+    button.addEventListener('click',function(){
+      if(typeof window.fbq === 'function'){
+        window.fbq('track','Lead',{
+          content_name:label
+        });
+
+        window.fbq('trackCustom',eventName,{
+          content_name:label
+        });
+      }
+    });
   }
-});
+
+  trackClick(
+    'telegramBtn',
+    'TelegramJoinClick',
+    'DUIWIN Telegram Click'
+  );
+
+  trackClick(
+    'whatsappBtn',
+    'WhatsAppClick',
+    'DUIWIN WhatsApp Click'
+  );
+
+})();
 </script>
+
 </body>
 </html>
